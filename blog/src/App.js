@@ -6,7 +6,11 @@ function App() {
 
   let post = 'React 강좌';
   let [title, b] = useState(['HTML','CSS','JS']);
-  let [good, c] = useState(0);
+  let [good, goodChange] = useState(0);
+
+  function clickHeart() {
+    goodChange(good+=1);
+  };
 
   return (
     <div className="App">
@@ -14,7 +18,7 @@ function App() {
         <h4>Coding Apple</h4>
       </div>
       <div className="list">
-        <h4>{ title[0] } <span>♡</span> { good } </h4>
+        <h4>{ title[0] } <span onClick={clickHeart}>♡</span> { good } </h4>
         <p>유튜브</p>
       </div>
       <div className='list'>
