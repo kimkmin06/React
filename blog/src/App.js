@@ -5,11 +5,11 @@ import { useState } from 'react';
 function App() {
 
   let post = 'React 강좌';
-  let [title, b] = useState(['HTML','CSS','JS']);
-  let [good, goodChange] = useState(0);
+  let [title, changeTitle] = useState(['HTML','CSS','JS']);
+  let [good, changeGood] = useState(0);
 
   function clickHeart() {
-    goodChange(good+=1);
+    changeGood(good+=1);
   };
 
   return (
@@ -17,6 +17,17 @@ function App() {
       <div className="black-nav">
         <h4>Coding Apple</h4>
       </div>
+
+      <button onClick={() => {
+        
+      }}>sort</button>
+
+      <button onClick={() => {
+        let copyTitle = [...title];
+        copyTitle[0] = 'REACT';
+        changeTitle(copyTitle);
+      }}>edit</button>
+
       <div className="list">
         <h4>{ title[0] } <span onClick={clickHeart}>♡</span> { good } </h4>
         <p>유튜브</p>
