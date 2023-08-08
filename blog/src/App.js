@@ -7,6 +7,7 @@ function App() {
   let [title, setTitle] = useState(['HTML', 'CSS', 'JS']);
   let [good, setGood] = useState([0, 0, 0]);
   let [modal, setModal] = useState(false);
+  let [modalTitle, setModalTitle] = useState(0);
 
   return (
     <div className="App">
@@ -18,7 +19,8 @@ function App() {
         title.map((a, i) => {
           return (
             <div className='list'>
-              <h4 onClick={() => { setModal(!modal) }}>{ title[i] }
+              <h4 onClick={() => { setModal(!modal); setModalTitle(i) }}>
+                { title[i] }
                 <span onClick={() => {
                   let copyGood = [...good];
                   copyGood[i] += 1;
@@ -31,8 +33,12 @@ function App() {
         })
       }
 
+      {/* <button onClick={() => { setModalTitle(0) }}>글제목0</button>
+      <button onClick={() => { setModalTitle(1) }}>글제목1</button>
+      <button onClick={() => { setModalTitle(2) }}>글제목2</button> */}
+
       {
-        modal ? <Modal setTitle={setTitle} title={title} /> : null
+        modal ? <Modal modalTitle={modalTitle} setTitle={setTitle} title={title} /> : null
       }
 
     </div>
@@ -42,7 +48,7 @@ function App() {
 let Modal = (props) => {
   return (
     <div className='modal'>
-      <h4>{ props.title[0] }</h4>
+      <h4>{ props.title[props.modalTitle] }</h4>
       <p>날짜</p>
       <p>상세내용</p>
       <button onClick={() => {
