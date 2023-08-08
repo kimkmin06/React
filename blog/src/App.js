@@ -5,12 +5,12 @@ import { useState } from 'react';
 function App() {
 
   let [title, setTitle] = useState(['HTML', 'CSS', 'JS']);
-  let [good, setGood] = useState(0);
-  let [modal, setModal] = useState(false);
+  let [good, setGood] = useState([0, 0, 0]);
+  // let [modal, setModal] = useState(false);
 
-  function clickHeart() {
-    setGood(good += 1);
-  };
+  // function clickHeart() {
+  //   setGood(good += 1);
+  // };
 
   return (
     <div className="App">
@@ -18,17 +18,13 @@ function App() {
         <h4>Coding Apple</h4>
       </div>
 
-      <button onClick={() => {
-        //가나다순 정렬 코드
-      }}>sort</button>
-
-      <button onClick={() => {
+      {/* <button onClick={() => {
         let copyTitle = [...title];
         copyTitle[0] = 'REACT';
         setTitle(copyTitle);
-      }}>edit</button>
+      }}>edit</button> */}
 
-      <div className="list">
+      {/* <div className="list">
         <h4>{title[0]} <span onClick={clickHeart}>♡</span> {good} </h4>
         <p>유튜브</p>
       </div>
@@ -39,11 +35,28 @@ function App() {
       <div className='list'>
         <h4 onClick={() => { setModal(!modal) }}>{title[2]}</h4>
         <p>니코쌤</p>
-      </div>
+      </div> */}
 
       {
-        modal ? <Modal></Modal> : null
+        title.map((a, i) => {
+          return (
+            <div className='list'>
+              <h4>{ title[i] }
+                <span onClick={() => {
+                  let copyGood = [...good];
+                  copyGood[i] += 1;
+                  setGood(copyGood);
+                }}> ♡</span> {good[i]}
+              </h4>
+              <p>유튜브</p>
+            </div>
+          );
+        })
       }
+
+      {/* {
+        modal ? <Modal></Modal> : null
+      } */}
 
     </div>
   );
