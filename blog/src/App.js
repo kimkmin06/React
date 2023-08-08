@@ -4,12 +4,12 @@ import { useState } from 'react';
 
 function App() {
 
-  let post = 'React 강좌';
-  let [title, changeTitle] = useState(['HTML', 'CSS', 'JS']);
-  let [good, changeGood] = useState(0);
+  let [title, setTitle] = useState(['HTML', 'CSS', 'JS']);
+  let [good, setGood] = useState(0);
+  let [modal, setModal] = useState(false);
 
   function clickHeart() {
-    changeGood(good += 1);
+    setGood(good += 1);
   };
 
   return (
@@ -25,7 +25,7 @@ function App() {
       <button onClick={() => {
         let copyTitle = [...title];
         copyTitle[0] = 'REACT';
-        changeTitle(copyTitle);
+        setTitle(copyTitle);
       }}>edit</button>
 
       <div className="list">
@@ -37,29 +37,19 @@ function App() {
         <p>유튜브</p>
       </div>
       <div className='list'>
-        <h4>{title[2]}</h4>
+        <h4 onClick={() => { modal ? setModal(false) : setModal(true) }}>{title[2]}</h4>
         <p>니코쌤</p>
       </div>
 
-
-
-      <Modal></Modal>
+      {
+        modal ? <Modal></Modal> : null
+      }
 
     </div>
   );
 }
 
-// let Modal = () => {
-//   return (
-//     <div className='modal'>
-//       <h4>제목</h4>
-//       <p>날짜</p>
-//       <p>상세내용</p>
-//     </div>
-//   );
-// };
-
-function Modal() {
+let Modal = () => {
   return (
     <div className='modal'>
       <h4>제목</h4>
@@ -67,6 +57,6 @@ function Modal() {
       <p>상세내용</p>
     </div>
   );
-}
+};
 
 export default App;
