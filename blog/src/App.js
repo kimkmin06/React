@@ -37,7 +37,7 @@ function App() {
         <p>유튜브</p>
       </div>
       <div className='list'>
-        <h4 onClick={() => { modal ? setModal(false) : setModal(true) }}>{title[2]}</h4>
+        <h4 onClick={() => { setModal(!modal) }}>{title[2]}</h4>
         <p>니코쌤</p>
       </div>
 
