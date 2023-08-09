@@ -19,7 +19,7 @@ function App() {
       {
         title.map((a, i) => {
           return (
-            <div className='list'>
+            <div className='list' key={i}>
               <h4 onClick={() => { setModal(!modal); setModalTitle(i) }}>
                 { title[i] }
                 <span onClick={(e) => {
@@ -30,7 +30,7 @@ function App() {
                 }}> ♡</span> {good[i]}
               </h4>
               <p>Youtube</p>
-              <button onClick={(a, i) => {
+              <button onClick={() => {
                 let copy = [...title];
                 copy.splice(i, 1);
                 setTitle(copy);
