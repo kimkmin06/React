@@ -8,6 +8,7 @@ function App() {
   let [good, setGood] = useState([0, 0, 0]);
   let [modal, setModal] = useState(false);
   let [modalTitle, setModalTitle] = useState(0);
+  let [inputValue, setInputValue] = useState('');
 
   return (
     <div className="App">
@@ -21,21 +22,30 @@ function App() {
             <div className='list'>
               <h4 onClick={() => { setModal(!modal); setModalTitle(i) }}>
                 { title[i] }
-                <span onClick={() => {
-                  let copyGood = [...good];
-                  copyGood[i] += 1;
-                  setGood(copyGood);
+                <span onClick={(e) => {
+                  e.stopPropagation();
+                  let copy = [...good];
+                  copy[i] += 1;
+                  setGood(copy);
                 }}> ♡</span> {good[i]}
               </h4>
-              <p>유튜브</p>
+              <p>Youtube</p>
+              <button onClick={(a, i) => {
+                let copy = [...title];
+                copy.splice(i, 1);
+                setTitle(copy);
+              }}>delete</button>
             </div>
           );
         })
       }
 
-      {/* <button onClick={() => { setModalTitle(0) }}>글제목0</button>
-      <button onClick={() => { setModalTitle(1) }}>글제목1</button>
-      <button onClick={() => { setModalTitle(2) }}>글제목2</button> */}
+      <input onChange={(e) => { setInputValue(e.target.value) }}/>
+      <button onClick={() => {
+        let copy = [...title];
+        copy.unshift(inputValue);
+        setTitle(copy);
+      }}>upload</button>
 
       {
         modal ? <Modal modalTitle={modalTitle} setTitle={setTitle} title={title} /> : null
@@ -52,9 +62,9 @@ let Modal = (props) => {
       <p>날짜</p>
       <p>상세내용</p>
       <button onClick={() => {
-        let copyTitle = [...props.title];
-        copyTitle[0] = "REACT";
-        props.setTitle(copyTitle);
+        let copy = [...props.title];
+        copy[0] = "REACT";
+        props.setTitle(copy);
       }}>edit</button>
     </div>
   );
