@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 function App() {
 
@@ -50,6 +50,7 @@ function App() {
       {
         modal ? <Modal modalTitle={modalTitle} setTitle={setTitle} title={title} /> : null
       }
+      <Modal2></Modal2>
 
     </div>
   );
@@ -69,5 +70,24 @@ let Modal = (props) => {
     </div>
   );
 };
+
+class Modal2 extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name : 'kim',
+      age : 20
+    }
+  } render() {
+    return (
+      //<div>안녕 { this.props.age }
+      <div>안녕 { this.state.age }
+        <button onClick={() => {
+          this.setState({age : 21})
+        }}>버튼</button>
+      </div>
+    );
+  }
+}
 
 export default App;
