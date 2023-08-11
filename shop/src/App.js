@@ -6,8 +6,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 
 import treat1 from './img/cbfm.jpg'
 import treat2 from './img/ckacl.jpg'
@@ -29,33 +27,38 @@ function App() {
         </Container>
       </Navbar>
 
-    {/* <div className='main-bg' style={{ backgroundImage : 'url(' + banner + ')' }}></div> */}
-    <div className='main-bg'></div>
+      {/* <div className='main-bg' style={{ backgroundImage : 'url(' + banner + ')' }}></div> */}
+      <div className='main-bg'></div>
 
-    <Container>
-      <Row>
-        <Col sm>
-          <img src={ treat1 } width={"80%"}/>
-          <h4>{ treats[0].title }</h4>
-          <p>{ treats[0].price }</p>
-        </Col>
-        <Col sm>
-          <img src={ treat2 } width={"80%"}/>
-          <h4>{ treats[1].title }</h4>
-          <p>{ treats[1].price }</p>
-        </Col>
-        <Col sm>
-          <img src={ treat3 } width={"80%"}/>
-          <h4>{ treats[2].title }</h4>
-          <p>{ treats[2].price }</p>
-        </Col>
-      </Row>
-    </Container>
+      <div className='container'>
+        <Card treats={ treats[0] } i={ treat1 }></Card>
+        <Card treats={ treats[1] } i={ treat2 }></Card>
+        <Card treats={ treats[2] } i={ treat3 }></Card>
+        {/* {
+          treats.map((a, i) => {
+            return (
+              <Card treats={ treats[i] } i={ i }></Card>
+            );
+          })
+        } */}
+      </div>
 
-    <div></div>
+      <div></div>
 
     </div>
   );
 }
+
+let Card = (props) => {
+  return (
+    <div className='col-md-4'>
+      <img src={ props.i } width={"80%"} />
+      {/* <img src={ '이미지 경로' + (props.i+1) + '.jpg' } width={"80%"} /> */}
+      <h4>{ props.treats.title }</h4>
+      <p>{ props.treats.price }</p>
+    </div>
+  );
+};
+
 
 export default App;
