@@ -1,13 +1,10 @@
 import { useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Container, Nav, Navbar } from 'react-bootstrap';
+import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
 import './App.css';
 import data from './data.js';
-import { Routes, Route, Link } from 'react-router-dom';
-
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import Row from 'react-bootstrap/Row';
+import Detail from './routes/Detail';
 
 import treat1 from './img/cbfm.jpg'
 import treat2 from './img/ckacl.jpg'
@@ -16,6 +13,7 @@ import treat3 from './img/enqn.jpg'
 function App() {
 
   let [treats] = useState(data);
+  let navigate = useNavigate();
 
   return (
     <div className="App">
@@ -24,8 +22,9 @@ function App() {
         <Container>
           <Navbar.Brand href="#home">Navbar</Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#features">Cart</Nav.Link>
+            <Nav.Link onClick={() => { navigate('/') }}>Home</Nav.Link>
+            {/* <Nav.Link onClick={() => { navigate(-1) }}>뒤로가기버튼</Nav.Link> */}
+            <Nav.Link onClick={() => { navigate('/detail') }}>Detail</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
@@ -44,31 +43,40 @@ function App() {
             </div>
           </>
         } />
-        <Route path='/detail' element={
-          <>
-            <DetailPage></DetailPage>
-          </>
-        } />
+        <Route path='/detail' element={<Detail />} />
+
+        {/* Nested Routes : 태그 안에 태그 들어간 것 */}
+        <Route path='/about' element={<About />}>
+          <Route path='member' element={<div>Member</div>} />
+          <Route path='location' element={<div>Company Location</div>} />
+        </Route>
+
+        <Route path='/event' element={<EventPage />}>
+          <Route path='one' element={<p>첫 주문시 츄르 서비스</p>} />
+          <Route path='two' element={<p>생일기념 츄르 받기</p>} />
+        </Route>
+
+        <Route path='*' element={<div>404 Page</div>} />
       </Routes>
 
     </div>
   );
 }
 
-let DetailPage = (props) => {
+let EventPage = () => {
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-md-6">
-          <img src="https://codingapple1.github.io/shop/shoes1.jpg" width="100%" />
-        </div>
-        <div className="col-md-6">
-          <h4 className="pt-5">상품명</h4>
-          <p>상품설명</p>
-          <p>120000원</p>
-          <button className="btn btn-danger">주문하기</button>
-        </div>
-      </div>
+    <div>
+      <h4>오늘의 이벤트</h4>
+      <Outlet></Outlet>
+    </div>
+  );
+}
+
+let About = () => {
+  return (
+    <div>
+      <h4>About Page</h4>
+      <Outlet></Outlet>
     </div>
   );
 }
