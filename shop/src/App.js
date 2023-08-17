@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import Row from 'react-bootstrap/Row';
 
 import treat1 from './img/cbfm.jpg'
 import treat2 from './img/ckacl.jpg'
@@ -43,9 +44,31 @@ function App() {
             </div>
           </>
         } />
-        <Route path='/detail' element={<div>상세페이지</div>} />
+        <Route path='/detail' element={
+          <>
+            <DetailPage></DetailPage>
+          </>
+        } />
       </Routes>
 
+    </div>
+  );
+}
+
+let DetailPage = (props) => {
+  return (
+    <div className="container">
+      <div className="row">
+        <div className="col-md-6">
+          <img src="https://codingapple1.github.io/shop/shoes1.jpg" width="100%" />
+        </div>
+        <div className="col-md-6">
+          <h4 className="pt-5">상품명</h4>
+          <p>상품설명</p>
+          <p>120000원</p>
+          <button className="btn btn-danger">주문하기</button>
+        </div>
+      </div>
     </div>
   );
 }
