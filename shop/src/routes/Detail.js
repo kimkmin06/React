@@ -6,9 +6,9 @@ let Detail = (props) => {
           <img src="https://codingapple1.github.io/shop/shoes1.jpg" width="100%" />
         </div>
         <div className="col-md-6">
-          <h4 className="pt-5">상품명</h4>
-          <p>상품설명</p>
-          <p>120000원</p>
+          <h4 className="pt-5">{ props.treats[0].title }</h4>
+          <p>{ props.treats[0].content }</p>
+          <p>{ props.treats[0].price }원</p>
           <button className="btn btn-danger">주문하기</button>
         </div>
       </div>

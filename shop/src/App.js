@@ -10,6 +10,7 @@ import treat1 from './img/cbfm.jpg'
 import treat2 from './img/ckacl.jpg'
 import treat3 from './img/enqn.jpg'
 
+// 리액트 라우터 3 : URL 파라미터로 상세페이지 100개 만들기
 function App() {
 
   let [treats] = useState(data);
@@ -43,9 +44,9 @@ function App() {
             </div>
           </>
         } />
-        <Route path='/detail' element={<Detail />} />
 
-        {/* Nested Routes : 태그 안에 태그 들어간 것 */}
+        <Route path='/detail/:id' element={<Detail treats={treats} />} />
+
         <Route path='/about' element={<About />}>
           <Route path='member' element={<div>Member</div>} />
           <Route path='location' element={<div>Company Location</div>} />
