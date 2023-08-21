@@ -5,16 +5,17 @@ import styled from 'styled-components';
 let Detail = (props) => {
 
   useEffect(()=>{
-    for (let i=0; i<10000; i++) {
-      console.log(1);
+    let a = setTimeout(() => { setAlert(false) }, 2000)
+
+    // clean up function
+    //기존 데이터 요청은 제거해야함
+    return () => {
+      clearTimeout(a);
     }
-  })
-
-  // setTimeout(() => {
-
-  // }, 2000)
+  }, [count])
 
   let [count, setCount] = useState(0)
+  let [alert, setAlert] = useState(true)
 
   let { id } = useParams();
   let findProduct = props.treats.find((x) => {
@@ -23,9 +24,14 @@ let Detail = (props) => {
 
   return (
     <div className="container">
-      <div className="alert-warning">
-        2초 이내 구매시 할인
-      </div>
+      {
+        alert == true
+        ? <div className="alert-warning">
+          2초 이내 구매시 할인
+          </div>
+        : null
+      }
+      
       {count}
       <button onClick={()=>{setCount(count+1)}}>button</button>
       <div className="row">
