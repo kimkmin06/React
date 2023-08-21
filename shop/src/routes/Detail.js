@@ -1,18 +1,14 @@
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from 'styled-components';
 
-// let Box = styled.div`
-//   background : #777777;
-//   padding : 20px;
-// `
-let YellowBtn = styled.button`
-  background: ${props => props.bg};
-  color: ${props => props.bg == 'blue'?'white':'black'};
-  padding: 10px;
-`
-let NewBtn = styled.button(YellowBtn)
-
 let Detail = (props) => {
+
+  useEffect(()=>{
+    console.log('안녕');
+  })
+
+  let [count, setCount] = useState(0)
 
   let { id } = useParams();
   let findProduct = props.treats.find((x) => {
@@ -21,10 +17,8 @@ let Detail = (props) => {
 
   return (
     <div className="container">
-      {/* <Box>
-        <YellowBtn>btn</YellowBtn>
-      </Box> */}
-      <YellowBtn bg="blue">button</YellowBtn>
+      {count}
+      <button onClick={()=>{setCount(count+1)}}>button</button>
       <div className="row">
         <div className="col-md-6">
           <img src="https://codingapple1.github.io/shop/shoes1.jpg" width="100%" />
