@@ -5,8 +5,14 @@ import styled from 'styled-components';
 let Detail = (props) => {
 
   useEffect(()=>{
-    console.log('안녕');
+    for (let i=0; i<10000; i++) {
+      console.log(1);
+    }
   })
+
+  // setTimeout(() => {
+
+  // }, 2000)
 
   let [count, setCount] = useState(0)
 
@@ -17,6 +23,9 @@ let Detail = (props) => {
 
   return (
     <div className="container">
+      <div className="alert-warning">
+        2초 이내 구매시 할인
+      </div>
       {count}
       <button onClick={()=>{setCount(count+1)}}>button</button>
       <div className="row">
