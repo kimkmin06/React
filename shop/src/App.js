@@ -5,6 +5,7 @@ import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
 import './App.css';
 import data from './data.js';
 import Detail from './routes/Detail';
+import axios from 'axios';
 
 import treat1 from './img/cbfm.jpg'
 import treat2 from './img/ckacl.jpg'
@@ -42,6 +43,15 @@ function App() {
               <Card treats={treats[1]} i={treat2}></Card>
               <Card treats={treats[2]} i={treat3}></Card>
             </div>
+            <button onClick={() => {
+              axios.get('https://codingapple1.github.io/shop/data2.json')
+              .then((result)=>{
+                console.log(result.data);
+              })
+              .catch(() => {
+                console.log('실패');
+              })
+            }}>button</button>
           </>
         } />
 
