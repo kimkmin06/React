@@ -4,18 +4,22 @@ import styled from 'styled-components';
 
 let Detail = (props) => {
 
-  useEffect(()=>{
-    let a = setTimeout(() => { setAlert(false) }, 2000)
+  let [count, setCount] = useState(0);
+  // let [alert, setAlert] = useState(true);
+  let [num, setNum] = useState('');
 
-    // clean up function
-    //기존 데이터 요청은 제거해야함
-    return () => {
-      clearTimeout(a);
+  useEffect(() => {
+    if (isNaN(num) == true) {
+      alert('NOPE');
     }
-  }, [count])
+  }, [num])
 
-  let [count, setCount] = useState(0)
-  let [alert, setAlert] = useState(true)
+  // useEffect(()=>{
+  //   let a = setTimeout(() => { setAlert(false) }, 2000)
+  //   return () => {
+  //     clearTimeout(a);
+  //   }
+  // }, [count])
 
   let { id } = useParams();
   let findProduct = props.treats.find((x) => {
@@ -24,13 +28,14 @@ let Detail = (props) => {
 
   return (
     <div className="container">
-      {
+      <input onChange={(e) => {setNum(e.target.value)}}/>
+      {/* {
         alert == true
         ? <div className="alert-warning">
           2초 이내 구매시 할인
           </div>
         : null
-      }
+      } */}
       
       {count}
       <button onClick={()=>{setCount(count+1)}}>button</button>
