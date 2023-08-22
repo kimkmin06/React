@@ -11,7 +11,6 @@ import treat1 from './img/cbfm.jpg'
 import treat2 from './img/ckacl.jpg'
 import treat3 from './img/enqn.jpg'
 
-// 리액트 라우터 3 : URL 파라미터로 상세페이지 100개 만들기
 function App() {
 
   let [treats] = useState(data);
@@ -30,9 +29,6 @@ function App() {
           </Nav>
         </Container>
       </Navbar>
-
-      {/* <Link to={"/"}>Home</Link>
-      <Link to={"/detail"}>Cart</Link> */}
 
       <Routes>
         <Route path='/' element={
@@ -96,7 +92,6 @@ let Card = (props) => {
   return (
     <div className='col-md-4'>
       <img src={props.i} width={"80%"} />
-      {/* <img src={ '이미지 경로' + (props.i+1) + '.jpg' } width={"80%"} /> */}
       <h4>{props.treats.title}</h4>
       <p>{props.treats.price}</p>
     </div>
