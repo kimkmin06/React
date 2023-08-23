@@ -13,7 +13,7 @@ import treat3 from './img/enqn.jpg'
 
 function App() {
 
-  let [treats] = useState(data);
+  let [treats, setTreats] = useState(data);
   let navigate = useNavigate();
 
   return (
@@ -22,9 +22,8 @@ function App() {
       <Navbar bg="dark" data-bs-theme="dark">
         <Container>
           <Navbar.Brand href="#home">Navbar</Navbar.Brand>
-          <Nav className="me-auto">
+          <Nav className="row">
             <Nav.Link onClick={() => { navigate('/') }}>Home</Nav.Link>
-            {/* <Nav.Link onClick={() => { navigate(-1) }}>뒤로가기버튼</Nav.Link> */}
             <Nav.Link onClick={() => { navigate('/detail') }}>Detail</Nav.Link>
           </Nav>
         </Container>
@@ -35,19 +34,39 @@ function App() {
           <>
             <div className='main-bg'></div>
             <div className='container'>
-              <Card treats={treats[0]} i={treat1}></Card>
+            {
+              treats.map((a,i) => {
+                return <Card treats={treats[i]} i={i} key={i}></Card>
+              })
+            }
+              {/* <Card treats={treats[0]} i={treat1}></Card>
               <Card treats={treats[1]} i={treat2}></Card>
-              <Card treats={treats[2]} i={treat3}></Card>
+              <Card treats={treats[2]} i={treat3}></Card> */}
             </div>
             <button onClick={() => {
               axios.get('https://codingapple1.github.io/shop/data2.json')
               .then((result)=>{
                 console.log(result.data);
+                let copy = [...treats, ...result.data];
+                setTreats(copy);
               })
               .catch(() => {
                 console.log('실패');
               })
-            }}>button</button>
+              
+              // // axios.post('/treats');
+              // Promise.all([axios.get('/url1'), axios.get('/url2')])
+              // .then(() => {
+              //   let copy = [...treats, ...result.data];
+              //   setTreats(copy);
+              // })
+
+              fetch('https://codingapple1.github.io/shop/data2.json')
+              .then(() => {
+                console.log("굳");
+              })
+              .then(data => {})
+            }}>more</button>
           </>
         } />
 
