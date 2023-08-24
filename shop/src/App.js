@@ -34,14 +34,14 @@ function App() {
           <>
             <div className='main-bg'></div>
             <div className='container'>
-            {
+            {/* {
               treats.map((a,i) => {
                 return <Card treats={treats[i]} i={i} key={i}></Card>
               })
-            }
-              {/* <Card treats={treats[0]} i={treat1}></Card>
+            } */}
+              <Card treats={treats[0]} i={treat1}></Card>
               <Card treats={treats[1]} i={treat2}></Card>
-              <Card treats={treats[2]} i={treat3}></Card> */}
+              <Card treats={treats[2]} i={treat3}></Card>
             </div>
             <button onClick={() => {
               axios.get('https://codingapple1.github.io/shop/data2.json')
@@ -62,10 +62,8 @@ function App() {
               // })
 
               fetch('https://codingapple1.github.io/shop/data2.json')
-              .then(() => {
-                console.log("굳");
-              })
-              .then(data => {})
+              .then(reseult => reseult.json())
+              .then(result => { console.log(result) });
             }}>more</button>
           </>
         } />
